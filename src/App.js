@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { useDispatch, connect, useSelector } from "react-redux";
+import { getMoviesList } from './Redux/Action/movieAction';
 import './App.css';
 
-function App() {
+
+function App(props) {
+  const dispatch = useDispatch();
+const number=useSelector((state)=>state.MovieReducer.getMoviesList)
+  useEffect(() => {
+    dispatch(getMoviesList())
+  }, [])
+
+  useEffect(() => {
+    console.log(props.getMoviesList, "getMoviesList")
+  }, [props.getMoviesList])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      test
     </div>
   );
 }
+
+// const mapStateToProps = (state) =>
+
+// (
+//   console.log(state, "state"), {
+//     getMoviesList: state.MovieReducer.getMoviesList
+//   });
+
+// const mapDispatchToProps = (dispatch) => {
+//   return (
+//     dispatch(getMoviesList())
+//   )
+// }
 
 export default App;
