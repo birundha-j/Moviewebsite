@@ -1,38 +1,319 @@
-.App {
+.masterContainer{
+  background-color: #1d1d1d;
+  width: 100%;
+}
+
+.container{
+  flex-wrap: wrap;
+  text-align: center;
+  background-color: #1d1d1d;
+  display: flex;
+  justify-content: center;
+  padding: 3% 5%;
+}
+
+.specificMovieContainer{
+  background-color: #1d1d1d;
+  height: 700px;
+}
+
+.imageViewContaner{
+  width: 250px;
+}
+
+.imageTextview{
+  margin: 25px 25px 0px 25px;
+  position: relative;
+  border: 4px solid white;
+}
+
+.imageView{
+  width: 100%;
+}
+
+.imageText{
+  margin: 25px 25px 0px 25px;
+ position: relative;
+ border: 4px solid white;
+}
+
+.imageTitle{
+  font-weight: bold;   
+  padding-left: 10px; 
+}
+
+.moviesInstruct{
+  display: flex;
+  width: 200px;
+  margin-left: 25px;
+  padding-top: 10px;
+  justify-content: space-between;
+} 
+
+.moviesBar .movietitleView{
+   width: 150px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: hidden;
+  display: inline-block;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.moviesBar{
+  text-align: start;
+}
+
+.movieStar{
+  position: relative;
+  bottom: 10px;
+}
+
+.releaseYear{
+  color: #7e7d7d;
+  font-size: 13px;
+}
+
+
+.img__description {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.imageText:hover{
+  border: 4px solid #6ac045;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.imageText:hover .imageView {
+  opacity: 0.5;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.imageText:hover .img__description {
+  opacity: 1;
+}
+
+.viewDetails {
+  width: 100px;
+  background-color: #6ac045;
+  color: white;
+  font-size: 15px;
+  padding: 8px 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.singleimageView{
+  width: 250px;
+  margin: 8px;
+  background-color: aliceblue;
+  padding: 3px;
+}
+
+.movieDetails{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+   justify-content: center;
+   margin: 8px;
+
+}
+
+.movieInstruction{
+    margin-left: 100px;
+    width: 20%;
+
+}
+
+.movieName{
+    font-size: 42px;
+    color: rgb(243, 241, 241);
+    font-weight: bold;
+}
+
+.movieVoterange{
+    color: rgb(243, 241, 241);
+    font-size: 17px;
+    padding-top: 10px;
+}
+
+.titleOverview{
+    color: rgb(223, 218, 210);
+    font-size: 13px;
+    flex-wrap: wrap;
+}
+
+.backBtnView{
+    width: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* start rating */
+
+.emptyStar{
+    color: #6ac045;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.fillStar{
+    color: #6ac045;
+    font-size: 30px;
+    cursor: pointer;
+}
+.favoritesMovies{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #6ac045;
+    color: white;
+    font-size: 15px;
+    padding: 8px 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.favoritsList{
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 60px 0px 0px;
+}
+
+
+/* Model */
+/* body {
+  height: 100vh;
+  overflow-y: hidden;
+  padding-right: 15px; /* Avoid width reflow */
+/* }
+
+body .modal-wrapper {
+  height: 100vh;
+  overflow-y: hidden;
+} */ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal {
+  z-index: 100;
+  background: #1d1d1d;
+  position: relative;
+  margin: 5% auto;
+  border-radius: 3px;
+  max-width: 55%;
+  padding: 0px 2rem 2rem 2rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 38px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-close-button {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  opacity: .3;
+  cursor: pointer;
+  border: none;
+}
+
+button {
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
+
+.button-default {
+  background: #247BA0;
+  color: #fff;
+}
+
+/* Favorite List */
+
+.modelHeading{
+  text-align: center;
+  font-size: 30px;
+  color: #6dc847;
+  font-weight: 500;
+  border-bottom: 1px solid #4e6b41;
+  padding-bottom: 10px;
+  /* position: relative;
+  bottom: 35px; */
+}
+
+/* websiteHeading */
+/* .logoView{
+width: 65px;
+position: relative;
+top: 10px;
+} */
+
+.websiteHeading{
+    color: #fff;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid rgb(128, 128, 128);
+}
+
+
+/* loader */
+
+.loader:empty {
+position: absolute;
+top: calc(50% - 4em);
+left: calc(50% - 4em);
+width: 2em;
+height: 2em;
+border: 10px solid #bbd6af;
+border-left: 10px solid #6dc847;
+border-radius: 50%;
+animation: load8 1.1s infinite linear;
+}
+
+@keyframes load8 {
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
 }

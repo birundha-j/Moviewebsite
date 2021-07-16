@@ -1,1 +1,0 @@
-export const GET_MOVIELIST = "GET_MOVIELIST";
