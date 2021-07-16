@@ -16,16 +16,22 @@ const Modal = ({ isShowing, hide, selectMovieList }) => isShowing ? ReactDOM.cre
                 <div className="modelHeading"> Favorite Movie List</div>
 
                 <div className="container">
+                    {selectMovieList == 0 ?
+                    
+                        <div className="emptyList">** No Added Movies **</div>
+                        :
+                        <>
+                            {selectMovieList.map((data, index) => {
+                                return (
+                                    <div className="imageViewContaner">
+                                        <div className="imageTextview">
+                                            <img src={"https://image.tmdb.org/t/p/original" + data.poster_path} className="imageView" />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </>}
 
-                    {selectMovieList.map((data, index) => {
-                        return (
-                            <div className="imageViewContaner">
-                                <div className="imageTextview">
-                                    <img src={"https://image.tmdb.org/t/p/original" + data.poster_path} className="imageView" />
-                                </div>
-                            </div>
-                        )
-                    })}
                 </div>
             </div>
         </div>

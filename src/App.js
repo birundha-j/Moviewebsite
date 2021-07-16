@@ -30,7 +30,7 @@ export default function App() {
   }, [])
 
   function demoAsyncCall() {
-    return new Promise((resolve) => setTimeout(() => resolve(), 4000));
+    return new Promise((resolve) => setTimeout(() => resolve(), 1000));
   }
 
 
@@ -39,17 +39,23 @@ export default function App() {
     setSpecificMovie(true)
   }, [specificMovie, movieDetails])
 
-  const changeAddStar = useCallback((data, id) => {
-    selectMovieList.push(data)
-    setShowStar([...showStar, id])
-  }, [showStar, selectMovieList])
+  const changeAddStar = (data, id) => {
+    if (!showStar.includes(id)) {
+      selectMovieList.push(data)
+      setShowStar([...showStar, id])
+    } else {
+      let filterList = selectMovieList.filter((li) => li !== data)
+      let showList = showStar.filter((it) => it !== id)
+      setSelectMovieList(filterList)
+      setShowStar(showList)
+    }
+  }
 
   const changeRemoveStar = useCallback((data, id) => {
     if (id > -2) {
       showStar.splice(id, 0);
     }
     setShowStar([...showStar]);
-
     const reducedArr = selectMovieList.filter((item, itemIndex) => {
       return itemIndex !== id
     })
@@ -60,12 +66,10 @@ export default function App() {
 
   return (
     <div className="masterContainer" >
-      {loader &&<div className="loader"></div>}
+      {loader && <div className="loader"></div>}
       <div>
         <div className="websiteHeading">Popular Movie Website</div>
-
       </div>
-
       <div className="favoritsList">
         {specificMovie === false && <div className="favoritesMovies" onClick={toggle}>
           <div>Favorites</div>
@@ -79,7 +83,6 @@ export default function App() {
       </div>
       {specificMovie === false &&
         <div className="container">
-
           <>
             {showData && showData.map((data, index) => {
               return (
@@ -96,18 +99,14 @@ export default function App() {
                       <div className="releaseYear">{new Date(data.release_date).getFullYear()}</div>
                     </div>
                     <div className="movieStar">
-                      {showStar.includes(index) ?
-                        <div onClick={() => changeRemoveStar(data, index)} className="fillStar">★</div>
-                        :
-                        <div onClick={() => changeAddStar(data, index)} className="emptyStar">☆</div>}
+                      <div onClick={() => changeAddStar(data, index)} className={`${showStar.includes(index) ? "fillStar" : "emptyStar"}`}>
+                        {showStar.includes(index) ? "★" : "☆"}</div>
                     </div>
                   </div>
-
                 </div>
               )
             })}
           </>
-
         </div>
       }
       {specificMovie &&
